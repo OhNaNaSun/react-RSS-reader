@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import {
-  Tabs, Layout, Row, Col, Menu, Icon,
-} from 'antd';
+import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
-
-const { TabPane } = Tabs;
-const { Footer } = Layout;
+import _ from 'lodash';
+import routerConfig from '../../routerConfig';
 
 class App extends Component {
   state = {
+    // TODO get current by index
+    // current: homePages[0].key,
     current: 'home',
   };
 
@@ -27,30 +26,14 @@ class App extends Component {
         selectedKeys={[current]}
         mode="horizontal"
       >
-        <Menu.Item key="home">
-          <Link to="home">
-            <Icon type="home" />
-            首页
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="discover">
-          <Link to="discover">
-            <Icon type="compass" />
-            发现
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="order">
-          <Link to="order">
-            <Icon type="book" />
-            订单
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="profile">
-          <Link to="profile">
-            <Icon type="profile" />
-            我的
-          </Link>
-        </Menu.Item>
+        {_.filter(routerConfig, { type: 'homePage' }).map(route => (
+          <Menu.Item key={route.key}>
+            <Link to={route.path}>
+              <Icon type={route.icon} />
+              {route.label}
+            </Link>
+          </Menu.Item>
+        ))}
       </Menu>
     );
   }

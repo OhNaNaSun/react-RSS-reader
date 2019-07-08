@@ -1,18 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './page/Home';
-import Order from './page/Order';
-import Profile from './page/Profile';
-import Discover from './page/Discover';
-import App from './page/App';
+import routerConfig from './routerConfig';
 
 const AppRouter = () => (
   <BrowserRouter>
-    <Route path="/" component={App} />
-    <Route path="home" component={Home} />
-    <Route path="discover" component={Discover} />
-    <Route path="order" component={Order} />
-    <Route path="profile" component={Profile} />
+    {routerConfig.map(route => (
+      <Route path={route.path} key={route.key} component={route.component} />
+    ))}
   </BrowserRouter>
 );
 
