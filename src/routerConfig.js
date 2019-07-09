@@ -12,7 +12,7 @@ export default [
   },
   {
     key: 'home',
-    path: 'home',
+    path: '/home',
     component: Home,
     icon: 'home',
     label: '首页',
@@ -20,7 +20,7 @@ export default [
   },
   {
     key: 'order',
-    path: 'order',
+    path: '/order',
     component: Order,
     icon: 'book',
     label: '订单',
@@ -28,7 +28,7 @@ export default [
   },
   {
     key: 'profile',
-    path: 'profile',
+    path: '/profile',
     component: Profile,
     icon: 'profile',
     label: '我的',
@@ -36,7 +36,7 @@ export default [
   },
   {
     key: 'discover',
-    path: 'discover',
+    path: '/discover',
     component: Discover,
     icon: 'compass',
     label: '发现',
