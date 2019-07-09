@@ -5,10 +5,10 @@ import _ from 'lodash';
 import routerConfig from '../../routerConfig';
 
 class App extends Component {
+  homePages = _.filter(routerConfig, { type: 'homePage' });
+
   state = {
-    // TODO get current by index
-    // current: homePages[0].key,
-    current: 'home',
+    current: this.homePages[0].key,
   };
 
   handleClick = (e) => {
@@ -26,7 +26,7 @@ class App extends Component {
         selectedKeys={[current]}
         mode="horizontal"
       >
-        {_.filter(routerConfig, { type: 'homePage' }).map(route => (
+        {this.homePages.map(route => (
           <Menu.Item key={route.key}>
             <Link to={route.path}>
               <Icon type={route.icon} />
