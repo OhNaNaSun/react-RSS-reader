@@ -1,35 +1,21 @@
 import React from 'react';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { Input } from 'antd';
-
-const { Search } = Input;
+import GeoLocation from './components/GeoLocation';
+import SearchBox from './components/SearchBox';
 
 const Home = () => (
   <div className="Home">
-    Home hahaha
+    <GeoLocation />
     <StickyContainer>
-      <div>Geo location placeholder</div>
       <Sticky>
-        {({
-          style,
-
-          // the following are also available but unused in this example
-          isSticky,
-          wasSticky,
-          distanceFromTop,
-          distanceFromBottom,
-          calculatedHeight,
-        }) => (
+        {({ style }) => (
           <header style={style}>
-            <Search
-              placeholder="input search text"
-              onSearch={value => console.log(value)}
-              style={{ width: 200 }}
-            />
+            {' '}
+            <SearchBox />
           </header>
         )}
       </Sticky>
-      <div style={{ height: '700px', background: 'blue' }} />
+      <div style={{ height: '700px', border: 'blue 1px solid' }} />
     </StickyContainer>
   </div>
 );
