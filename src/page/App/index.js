@@ -1,41 +1,36 @@
-import React, { Component } from 'react';
-import { Menu, Icon } from 'antd';
-import { Link } from 'react-router-dom';
-import _ from 'lodash';
-import routerConfig from '../../routerConfig';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Icon from '@material-ui/core/Icon';
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-class App extends Component {
-  homePages = _.filter(routerConfig, { type: 'homePage' });
+const useStyles = makeStyles({
+  root: {
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+  },
+});
 
-  state = {
-    current: this.homePages[0].key,
-  };
+export default function App() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState('recents');
 
-  handleClick = (e) => {
-    this.setState({
-      current: e.key,
-    });
-  };
-
-  render() {
-    const { current } = this.state;
-    return (
-      <Menu
-        style={{ position: 'fixed', bottom: '0', width: '100%' }}
-        onClick={this.handleClick}
-        selectedKeys={[current]}
-        mode="horizontal"
-      >
-        {this.homePages.map(route => (
-          <Menu.Item key={route.key}>
-            <Link to={route.path}>
-              <Icon type={route.icon} />
-              {route.label}
-            </Link>
-          </Menu.Item>
-        ))}
-      </Menu>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  return (
+    <div className={classes.root}>
+      <BottomNavigation value={value} onChange={handleChange}>
+        <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction label="Folder" value="folder" icon={<Icon>folder</Icon>} />
+      </BottomNavigation>
+    </div>
+  );
 }
-export default App;
