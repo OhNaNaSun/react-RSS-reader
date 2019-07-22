@@ -2,13 +2,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import Icon from '@material-ui/core/Icon';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import _ from 'lodash';
+import { Link } from 'react-router-dom';
+import routerConfig from '../../routerConfig';
 
 const useStyles = makeStyles({
-  root: {
+  fixedToBottom: {
     position: 'fixed',
     bottom: 0,
     width: '100%',
@@ -17,19 +16,25 @@ const useStyles = makeStyles({
 
 export default function App() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('recents');
-
+  const [value, setValue] = React.useState('home');
+  const homePages = _.filter(routerConfig, { type: 'homePage' });
   function handleChange(event, newValue) {
     setValue(newValue);
   }
 
   return (
-    <div className={classes.root}>
-      <BottomNavigation value={value} onChange={handleChange}>
-        <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-        <BottomNavigationAction label="Folder" value="folder" icon={<Icon>folder</Icon>} />
+    <div className={classes.fixedToBottom}>
+      <BottomNavigation showLabels value={value} onChange={handleChange}>
+        {homePages.map(route => (
+          <BottomNavigationAction
+            key={route.key}
+            label={route.label}
+            value={route.key}
+            icon={route.icon}
+            component={Link}
+            to={route.path}
+          />
+        ))}
       </BottomNavigation>
     </div>
   );

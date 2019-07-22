@@ -1,3 +1,8 @@
+import React from 'react';
+import HomeIcon from '@material-ui/icons/Home';
+import BookIcon from '@material-ui/icons/Book';
+import PortraitIcon from '@material-ui/icons/Portrait';
+import DiscoverIcon from '@material-ui/icons/Explore';
 import Home from './page/Home';
 import Order from './page/Order';
 import Profile from './page/Profile';
@@ -14,7 +19,7 @@ export default [
     key: 'home',
     path: '/home',
     component: Home,
-    icon: 'home',
+    icon: <HomeIcon />,
     label: '首页',
     type: 'homePage',
   },
@@ -22,7 +27,7 @@ export default [
     key: 'order',
     path: '/order',
     component: Order,
-    icon: 'book',
+    icon: <BookIcon />,
     label: '订单',
     type: 'homePage',
   },
@@ -30,7 +35,7 @@ export default [
     key: 'profile',
     path: '/profile',
     component: Profile,
-    icon: 'profile',
+    icon: <PortraitIcon />,
     label: '我的',
     type: 'homePage',
   },
@@ -38,7 +43,7 @@ export default [
     key: 'discover',
     path: '/discover',
     component: Discover,
-    icon: 'compass',
+    icon: <DiscoverIcon />,
     label: '发现',
     type: 'homePage',
   },
