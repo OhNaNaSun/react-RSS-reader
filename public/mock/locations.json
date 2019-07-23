@@ -1,0 +1,30 @@
+[
+  {
+    "address": "北京市东城区南竹杆胡同2号",
+    "city": "北京市东城区",
+    "city_id": 3,
+    "distance": "547m",
+    "district_id": 5001,
+    "geohash": "wx4g1e243yyq",
+    "id": "B000A85NTU",
+    "latitude": 39.92062,
+    "longitude": 116.433189,
+    "name": "银河SOHO",
+    "request_id": "2537581001586885273",
+    "short_address": "南竹杆胡同2号"
+  },
+  {
+    "address": "北京市东城区东直门外大街48号(来福士对面)",
+    "city": "北京市东城区",
+    "city_id": 3,
+    "distance": "2.4km",
+    "district_id": 5001,
+    "geohash": "wx4g1wcsq4n0",
+    "id": "B000A7HDR7",
+    "latitude": 39.940163,
+    "longitude": 116.435431,
+    "name": "东方银座",
+    "request_id": "5421341781527408989",
+    "short_address": "东直门外大街48号(来福士对面)"
+  }
+]
