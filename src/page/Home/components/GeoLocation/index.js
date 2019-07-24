@@ -2,35 +2,36 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PLACE_SEARCH_API } from 'constants/apis';
 
-const GeoLocation = () => {
-  const [latLong, setLatLong] = useState({});
+const GeoPosition = () => {
   const [positionStr, setPositionStr] = useState('');
-  const getCurrentLatLong = () => {
+  const getCurrentLatLong = () => new Promise((resolve) => {
     navigator.geolocation.getCurrentPosition((location) => {
-      setLatLong({ lat: location.coords.latitude, lng: location.coords.longitude });
+      const latLng = { lat: location.coords.latitude, lng: location.coords.longitude };
+      resolve(latLng);
     });
-  };
-  async function getPosition() {
+  });
+  async function getPosition(latLng) {
     await axios
       .get(PLACE_SEARCH_API, {
-        latitude: latLong.latitude,
-        longitude: latLong.longitude,
+        params: {
+          latitude: latLng.lat,
+          longitude: latLng.lng,
+        },
       })
       .then((res) => {
-        setPositionStr(res);
+        setPositionStr(res.data[0].address);
       });
   }
   useEffect(() => {
-    getCurrentLatLong();
-    getPosition();
+    getCurrentLatLong().then((latLng) => {
+      getPosition(latLng);
+    });
   }, []);
   return (
     <div>
-      <h2>{JSON.stringify(latLong)}</h2>
       <h2>{JSON.stringify(positionStr)}</h2>
-      <div className="gap short" style={{ background: 'linear-gradient(#fff, #ddd)' }} />
     </div>
   );
 };
 
-export default GeoLocation;
+export default GeoPosition;
