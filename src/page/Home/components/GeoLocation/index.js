@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PLACE_SEARCH_API } from 'constants/apis';
+import Box from '@material-ui/core/Box';
 
 const GeoPosition = () => {
   const [positionStr, setPositionStr] = useState('');
@@ -29,7 +30,9 @@ const GeoPosition = () => {
   }, []);
   return (
     <div>
-      <h2>{JSON.stringify(positionStr)}</h2>
+      <Box display="flex" flexDirection="row" color="primary.contrastText" bgcolor="primary.main">
+        <Box p={1}>{positionStr}</Box>
+      </Box>
     </div>
   );
 };

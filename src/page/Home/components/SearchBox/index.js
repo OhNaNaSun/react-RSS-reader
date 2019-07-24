@@ -1,13 +1,14 @@
 import React from 'react';
-import { Input } from 'antd';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
-const { Search } = Input;
 const SearchBox = () => (
-  <Search
-    placeholder="input search text"
-    onSearch={value => console.log(value)}
-    style={{ width: 200 }}
-  />
+  <div>
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
+    <Input placeholder="input search text" style={{ width: 200 }} />
+  </div>
 );
 
 export default SearchBox;

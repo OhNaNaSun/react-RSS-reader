@@ -4,7 +4,7 @@ import GeoLocation from './components/GeoLocation';
 import SearchBox from './components/SearchBox';
 
 const Home = () => (
-  <div className="Home">
+  <div>
     <GeoLocation />
     <StickyContainer>
       <Sticky>
@@ -15,7 +15,7 @@ const Home = () => (
           </header>
         )}
       </Sticky>
-      <div style={{ height: '700px', border: 'blue 1px solid' }} />
+      <div style={{ height: '700px' }} />
     </StickyContainer>
   </div>
 );
