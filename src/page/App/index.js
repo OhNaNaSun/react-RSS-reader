@@ -10,6 +10,7 @@ const useStyles = makeStyles({
   fixedToBottom: {
     position: 'fixed',
     bottom: 0,
+    left: 0,
     width: '100%',
   },
 });
