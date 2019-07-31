@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PLACE_SEARCH_API } from 'constants/apis';
-import Box from '@material-ui/core/Box';
+import LocationIcon from '@material-ui/icons/LocationOn';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 const GeoPosition = () => {
   const [positionStr, setPositionStr] = useState('');
   const getCurrentLatLong = () => new Promise((resolve) => {
@@ -28,11 +45,20 @@ const GeoPosition = () => {
       getPosition(latLng);
     });
   }, []);
+  const classes = useStyles();
   return (
     <div>
-      <Box display="flex" flexDirection="row" color="primary.contrastText" bgcolor="primary.main">
-        <Box p={1}>{positionStr}</Box>
-      </Box>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <LocationIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            {positionStr}
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
