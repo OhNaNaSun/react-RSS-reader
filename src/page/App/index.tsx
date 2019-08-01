@@ -19,7 +19,7 @@ export default function App() {
   const classes = useStyles();
   const [value, setValue] = React.useState('home');
   const homePages = _.filter(routerConfig, { type: 'homePage' });
-  function handleChange(event, newValue) {
+  function handleChange(newValue: any) {
     setValue(newValue);
   }
 

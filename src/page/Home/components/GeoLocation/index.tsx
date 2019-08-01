@@ -28,7 +28,7 @@ const GeoPosition = () => {
       resolve(latLng);
     });
   });
-  async function getPosition(latLng) {
+  async function getPosition(latLng: { lat: ''; lng: '' }) {
     await axios
       .get(PLACE_SEARCH_API, {
         params: {
@@ -41,7 +41,7 @@ const GeoPosition = () => {
       });
   }
   useEffect(() => {
-    getCurrentLatLong().then((latLng) => {
+    getCurrentLatLong().then((latLng: any) => {
       getPosition(latLng);
     });
   }, []);
