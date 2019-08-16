@@ -1,3 +1,5 @@
 /config
 /src/serviceWorker.js
 /node_modules
+src/registerServiceWorker.js
+src/**/__tests__/**
