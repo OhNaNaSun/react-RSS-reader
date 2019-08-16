@@ -80,16 +80,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function MiniDrawer() {
+const MiniDrawer: React.SFC = () => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
-    function handleDrawerOpen() {
+    function handleDrawerOpen(): void {
         setOpen(true);
     }
 
-    function handleDrawerClose() {
+    function handleDrawerClose(): void {
         setOpen(false);
     }
 
@@ -184,4 +184,5 @@ export default function MiniDrawer() {
             </main>
         </div>
     );
-}
+};
+export default MiniDrawer;
