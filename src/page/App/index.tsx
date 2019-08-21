@@ -2,6 +2,7 @@ import React from 'react';
 import MiniDrawer from './MiniDrawer';
 import NestedList from './NestedList';
 import Divider from '@material-ui/core/Divider';
+import './feedContainer';
 
 const App: React.SFC = () => {
     return (
