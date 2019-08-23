@@ -7,7 +7,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AddIcon from '@material-ui/icons/Add';
-
+import feedsDataActions from './feedsDataActions';
+const data = feedsDataActions.getValue('name').then(res => {
+    console.log('fetch', res);
+});
+// console.log('fetch', data);
 const App: React.SFC = () => {
     return (
         <div>
