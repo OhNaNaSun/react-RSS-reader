@@ -7,6 +7,19 @@ const dataStoreUrl = 'https://keyvalue.immanuel.co/api/KeyVal/';
 type ResultType = {
     data: string;
 };
+/*
+$.ajax({
+    type: 'post',
+    url: 'http://localhost:4000/users',
+    data: {
+      "id": 103,
+      "title": "我是新加入的新闻",
+      "date": "2016-08-12",
+      "likes": 0,
+      "views": 0
+    }
+  }
+)*/
 // From http://keyvalue.immanuel.co/
 const feedsDataActions = {
     getValue: async (itemkey: string): Promise<ResultType> => {

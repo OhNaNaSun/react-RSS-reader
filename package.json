@@ -32,7 +32,8 @@
         "build": "react-app-rewired build",
         "test": "react-app-rewired test",
         "eject": "react-scripts eject",
-        "lint:fix": "eslint './src/**/*.{ts,tsx}'"
+        "lint:fix": "eslint './src/**/*.{ts,tsx}'",
+        "mock:api": "json-server --watch api/db.json --port 4000"
     },
     "eslintConfig": {
         "extends": "react-app"
