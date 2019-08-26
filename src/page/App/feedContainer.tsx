@@ -1,12 +1,11 @@
+import { CORS_PROXY } from './constants';
 import React, { useState, useEffect, FunctionComponent } from 'react';
 const Parser = require('rss-parser');
-
 const parser = new Parser({
     customFields: {
         item: ['media:description', 'description'],
     },
 });
-const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
 const FeedContainer: FunctionComponent = () => {
     const [data, dataSet] = useState([{ title: '', description: '' }]);
     const fetchMyAPI = async (): Promise<number> => {
