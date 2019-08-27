@@ -22,8 +22,8 @@ $.ajax({
 )*/
 // From http://keyvalue.immanuel.co/
 const feedsDataActions = {
-    getValue: async (itemkey: string): Promise<ResultType> => {
-        const { data } = await axios.get(dataStoreUrl + 'GetValue/' + appkey + '/' + itemkey);
+    getValue: async (): Promise<ResultType> => {
+        const { data } = await axios.get('/users');
         return { data };
     },
     postValue: async (itemkey: string, itemval: string): Promise<object> => {
@@ -33,7 +33,7 @@ const feedsDataActions = {
         return { data };
     },
     AddFeed: async (feedType: string, feedVal: string): Promise<object> => {
-        const feedsDataPromise = await feedsDataActions.getValue('feeds');
+        const feedsDataPromise = await feedsDataActions.getValue();
         let feedsData = feedsDataPromise.data && JSON.parse(feedsDataPromise.data);
         feedsData = typeof feedsData === 'object' ? feedsData : {};
         console.log('get>>', feedsData, feedType, feedVal);

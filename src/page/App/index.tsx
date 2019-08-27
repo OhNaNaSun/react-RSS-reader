@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import feedsDataActions from './feedsDataActions';
 import AddFeedModal from './AddFeedModal';
 
-const data = feedsDataActions.getValue('name').then(res => {
+const data = feedsDataActions.getValue().then(res => {
     console.log('fetch', res);
 });
 // console.log('fetch', data);
