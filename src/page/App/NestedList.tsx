@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 interface FeedListProps {
     feedType: string;
-    // feeds: { name: string; link: string }[];
+    feeds: { name: string; link: string }[];
 }
 const NestedList: React.SFC<FeedListProps> = props => {
     console.log('props', props);
     const classes = useStyles();
-    const { feedType } = props;
+    const { feedType, feeds } = props;
     const [open, setOpen] = React.useState(false);
-    // console.log('feed', feeds);
+    console.log('feeds', feeds);
     function handleClick(): void {
         setOpen(!open);
     }
@@ -51,13 +51,13 @@ const NestedList: React.SFC<FeedListProps> = props => {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List disablePadding>
-                    {[{ name: 'a', link: 'b' }].map((feed: { name: string }) => {
+                    {feeds.map((feed: { name: string }) => {
                         return (
                             <ListItem key={feed.name} button className={classes.nested}>
                                 <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon>
-                                <ListItemText primary="Starred" />
+                                <ListItemText primary={feed.name} />
                             </ListItem>
                         );
                     })}

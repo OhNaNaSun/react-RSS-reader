@@ -22,9 +22,8 @@ const App: React.SFC = () => {
     return (
         <div>
             <MiniDrawer>
-                <NestedList feedType={'testType'} />
+                <NestedList feedType={'testttttType'} feeds={[{ name: 'a', link: 'b' }]} />
                 <Divider />
-
                 <List>
                     <AddFeedModal />
                 </List>
