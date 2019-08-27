@@ -23,7 +23,7 @@ $.ajax({
 // From http://keyvalue.immanuel.co/
 const feedsDataActions = {
     getValue: async (): Promise<ResultType> => {
-        const { data } = await axios.get('/users');
+        const { data } = await axios.get('/feeds');
         return { data };
     },
     postValue: async (itemkey: string, itemval: string): Promise<object> => {

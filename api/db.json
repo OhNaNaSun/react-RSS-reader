@@ -26,19 +26,7 @@
             "views": "0"
         }
     ],
-    "companies": [
-        {
-            "id": 1,
-            "name": "Microsoft"
-        },
-        {
-            "id": 2,
-            "name": "Facebook"
-        },
-        {
-            "id": 3,
-            "name": "Amazon"
-        }
-    ],
-    "feeds": {}
+    "feeds": {
+        "tech": [{ "name": "medium", "link": "medium link" }]
+    }
 }

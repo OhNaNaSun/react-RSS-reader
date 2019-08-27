@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -12,6 +12,7 @@ import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import { link } from 'fs';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,11 +26,16 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
-
-const NestedList: React.SFC = () => {
+interface FeedListProps {
+    feedType: string;
+    // feeds: { name: string; link: string }[];
+}
+const NestedList: React.SFC<FeedListProps> = props => {
+    console.log('props', props);
     const classes = useStyles();
+    const { feedType } = props;
     const [open, setOpen] = React.useState(false);
-
+    // console.log('feed', feeds);
     function handleClick(): void {
         setOpen(!open);
     }
@@ -40,17 +46,21 @@ const NestedList: React.SFC = () => {
                 <ListItemIcon>
                     <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary={feedType} />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                        <ListItemIcon>
-                            <StarBorder />
-                        </ListItemIcon>
-                        <ListItemText primary="Starred" />
-                    </ListItem>
+                <List disablePadding>
+                    {[{ name: 'a', link: 'b' }].map((feed: { name: string }) => {
+                        return (
+                            <ListItem key={feed.name} button className={classes.nested}>
+                                <ListItemIcon>
+                                    <StarBorder />
+                                </ListItemIcon>
+                                <ListItemText primary="Starred" />
+                            </ListItem>
+                        );
+                    })}
                 </List>
             </Collapse>
         </List>
