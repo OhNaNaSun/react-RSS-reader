@@ -11,7 +11,7 @@ import axios from 'axios';
 const fecthFeedData = feedsDataActions.getValue;
 interface FeedItem {
     type: string;
-    // items: { name: string; link: string }[];
+    items: { name: string; link: string }[];
 }
 const App: React.SFC = () => {
     const [data, dataSet] = useState<FeedItem[]>([]);
@@ -28,7 +28,7 @@ const App: React.SFC = () => {
         <div>
             <MiniDrawer>
                 {data.map((item: FeedItem) => {
-                    return <NestedList key={item.type} feedType={item.type} feeds={[{ name: 'tt', link: 'bbb' }]} />;
+                    return <NestedList key={item.type} feedType={item.type} feeds={item.items} />;
                 })}
                 <Divider />
                 <List>
