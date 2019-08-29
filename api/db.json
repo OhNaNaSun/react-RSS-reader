@@ -29,25 +29,15 @@
     "feeds": [
         {
             "type": "tech",
-            "items": [
-                {
-                    "name": "medium",
-                    "link": "medium link"
-                },
-                {
-                    "name": "medium 2",
-                    "link": "medium link 2"
-                }
-            ]
+            "feed": "medium"
+        },
+        {
+            "type": "tech",
+            "feed": "medium 2"
         },
         {
             "type": "life",
-            "items": [
-                {
-                    "name": "life pony fool",
-                    "link": "life pony fool link"
-                }
-            ]
+            "feed": "pony fool"
         }
     ]
 }

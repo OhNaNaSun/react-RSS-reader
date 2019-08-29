@@ -31,11 +31,9 @@ interface FeedListProps {
     feeds: { name: string; link: string }[];
 }
 const NestedList: React.SFC<FeedListProps> = props => {
-    console.log('props', props);
     const classes = useStyles();
     const { feedType, feeds } = props;
     const [open, setOpen] = React.useState(false);
-    console.log('feeds', feeds);
     function handleClick(): void {
         setOpen(!open);
     }
@@ -51,13 +49,13 @@ const NestedList: React.SFC<FeedListProps> = props => {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List disablePadding>
-                    {feeds.map((feed: { name: string }) => {
+                    {feeds.map((feed: string) => {
                         return (
-                            <ListItem key={feed.name} button className={classes.nested}>
+                            <ListItem key={feed} button className={classes.nested}>
                                 <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon>
-                                <ListItemText primary={feed.name} />
+                                <ListItemText primary={feed} />
                             </ListItem>
                         );
                     })}

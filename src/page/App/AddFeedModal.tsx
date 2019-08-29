@@ -10,11 +10,12 @@ import AddIcon from '@material-ui/icons/Add';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import feedsDataActions from './feedsDataActions';
+// import feedsDataActions from './feedsDataActions';
+import axios from 'axios';
 
 const FormDialog: React.SFC = () => {
     const [open, setOpen] = React.useState(false);
-
+    const [feedText, changeFeedText] = React.useState('');
     function handleClickOpen(): void {
         setOpen(true);
     }
@@ -22,7 +23,16 @@ const FormDialog: React.SFC = () => {
     function handleClose(): void {
         setOpen(false);
     }
+    const postNewFeed = async (): Promise<object> => {
+        const { data } = await axios.post('./feeds', {
+            type: 'tech',
+            feed: feedText,
+        });
+        return { data };
+    };
     const AddFeed = (): void => {
+        console.log('add feed', feedText);
+        postNewFeed();
         // feedsDataActions.AddFeed('Tech', 'test');
         //handleClose();
     };
@@ -38,7 +48,18 @@ const FormDialog: React.SFC = () => {
                 <DialogTitle id="form-dialog-title">Add Feed:</DialogTitle>
                 <DialogContent>
                     <DialogContentText>Add your website feed here</DialogContentText>
-                    <TextField autoFocus margin="dense" id="name" label="Feed" type="url" fullWidth />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Feed"
+                        type="url"
+                        fullWidth
+                        onChange={(event): void => {
+                            changeFeedText(event.target.value);
+                        }}
+                    />
+                    gaga show here:{feedText}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
