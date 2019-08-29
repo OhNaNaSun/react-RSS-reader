@@ -23,7 +23,7 @@ const FormDialog: React.SFC = () => {
         setOpen(false);
     }
     const AddFeed = (): void => {
-        feedsDataActions.AddFeed('Tech', 'test');
+        // feedsDataActions.AddFeed('Tech', 'test');
         //handleClose();
     };
     return (

@@ -6,15 +6,20 @@ import List from '@material-ui/core/List';
 import feedsDataActions from './feedsDataActions';
 import AddFeedModal from './AddFeedModal';
 
+import axios from 'axios';
 // console.log('fetch', data);
 const fecthFeedData = feedsDataActions.getValue;
+interface FeedItem {
+    type: string;
+    // items: { name: string; link: string }[];
+}
 const App: React.SFC = () => {
-    const [data, dataSet] = useState({});
-    // console.log(data);
-    const fetchMyAPI = async (): Promise<object> => {
-        const feed = await fecthFeedData();
+    const [data, dataSet] = useState<FeedItem[]>([]);
+    const fetchMyAPI = async (): Promise<object[]> => {
+        const feed = await axios.get('/feeds');
+        console.log('fetch from index', feed);
         dataSet(feed.data);
-        return feed;
+        return feed.data;
     };
     useEffect(() => {
         fetchMyAPI();
@@ -22,7 +27,9 @@ const App: React.SFC = () => {
     return (
         <div>
             <MiniDrawer>
-                <NestedList feedType={'testttttType'} feeds={[{ name: 'a', link: 'b' }]} />
+                {data.map((item: FeedItem) => {
+                    return <NestedList key={item.type} feedType={item.type} feeds={[{ name: 'tt', link: 'bbb' }]} />;
+                })}
                 <Divider />
                 <List>
                     <AddFeedModal />

@@ -24,7 +24,7 @@ $.ajax({
 const feedsDataActions = {
     getValue: async (): Promise<ResultType> => {
         const { data } = await axios.get('/feeds');
-        return { data };
+        return data;
     },
     postValue: async (itemkey: string, itemval: string): Promise<object> => {
         const { data } = await axios.post(
