@@ -1,43 +1,53 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "firstName": "Bill",
-            "lastName": "Gates",
-            "email": "bill@microsoft.com"
-        },
-        {
-            "id": 2,
-            "firstName": "Mark",
-            "lastName": "Zuckerberg",
-            "email": "mark@facebook.com"
-        },
-        {
-            "id": 3,
-            "firstName": "Jeff",
-            "lastName": "Bezos",
-            "email": "jeff@amazon.com"
-        },
-        {
-            "id": "103",
-            "title": "我是新加入的新闻",
-            "date": "2016-08-12",
-            "likes": "0",
-            "views": "0"
-        }
-    ],
-    "feeds": [
-        {
-            "type": "tech",
-            "feed": "medium"
-        },
-        {
-            "type": "tech",
-            "feed": "medium 2"
-        },
-        {
-            "type": "life",
-            "feed": "pony fool"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Bill",
+      "lastName": "Gates",
+      "email": "bill@microsoft.com"
+    },
+    {
+      "id": 2,
+      "firstName": "Mark",
+      "lastName": "Zuckerberg",
+      "email": "mark@facebook.com"
+    },
+    {
+      "id": 3,
+      "firstName": "Jeff",
+      "lastName": "Bezos",
+      "email": "jeff@amazon.com"
+    },
+    {
+      "id": "103",
+      "title": "我是新加入的新闻",
+      "date": "2016-08-12",
+      "likes": "0",
+      "views": "0"
+    }
+  ],
+  "feeds": [
+    {
+      "type": "tech",
+      "feed": "medium"
+    },
+    {
+      "type": "tech",
+      "feed": "medium 2"
+    },
+    {
+      "type": "life",
+      "feed": "pony fool"
+    },
+    {
+      "type": "work",
+      "feed": "test feed",
+      "id": "QE9-UYe"
+    },
+    {
+      "type": "work",
+      "feed": "add another new feed",
+      "id": "P-DpqOh"
+    }
+  ]
 }

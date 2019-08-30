@@ -24,17 +24,18 @@ const FormDialog: React.SFC = () => {
         setOpen(false);
     }
     const postNewFeed = async (): Promise<object> => {
-        const { data } = await axios.post('./feeds', {
-            type: 'tech',
-            feed: feedText,
-        });
-        return { data };
+        await axios
+            .post('/feeds', {
+                type: 'work',
+                feed: feedText,
+            })
+            .then(res => console.log(res.data));
+        return {};
     };
     const AddFeed = (): void => {
         console.log('add feed', feedText);
         postNewFeed();
-        // feedsDataActions.AddFeed('Tech', 'test');
-        //handleClose();
+        handleClose();
     };
     return (
         <div>
