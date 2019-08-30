@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 interface FeedListProps {
     feedType: string;
-    feeds: { name: string; link: string }[];
+    feeds: string[];
 }
 const NestedList: React.SFC<FeedListProps> = props => {
     const classes = useStyles();
