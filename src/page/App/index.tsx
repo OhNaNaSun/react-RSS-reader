@@ -40,7 +40,7 @@ const App: React.SFC = () => {
                     })}
                 <Divider />
                 <List>
-                    <AddFeedModal />
+                    <AddFeedModal refreshList={fetchMyAPI}/>
                 </List>
             </MiniDrawer>
         </div>
