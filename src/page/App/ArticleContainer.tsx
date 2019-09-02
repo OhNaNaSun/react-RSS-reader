@@ -6,7 +6,7 @@ const parser = new Parser({
         item: ['media:description', 'description'],
     },
 });
-const FeedContainer: FunctionComponent = () => {
+const ArticleContainer: FunctionComponent = () => {
     const [data, dataSet] = useState([{ title: '', description: '' }]);
     const fetchMyAPI = async (): Promise<number> => {
         const feed = await parser.parseURL(CORS_PROXY + 'https://ponyfoo.com/articles/feed');
@@ -25,4 +25,4 @@ const FeedContainer: FunctionComponent = () => {
         </div>
     );
 };
-export default FeedContainer;
+export default ArticleContainer;

@@ -148,7 +148,7 @@ const MiniDrawer: React.SFC = (props: { children?: React.ReactNode }) => {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <FeedContainer />
+                <FeedContainer feedUrl="http://jsfeeds.com/feed" />
             </main>
         </div>
     );

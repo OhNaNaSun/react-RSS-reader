@@ -62,18 +62,23 @@ const useStyles = makeStyles(theme => ({
         height: '100px',
     },
 }));
-const FeedContainer: FunctionComponent = () => {
+interface FeedProps {
+    feedUrl: string;
+}
+const FeedContainer: React.SFC<FeedProps> = props => {
     const [data, dataSet] = useState([
         { description: '', title: '', pubDate: '', contentSnippet: '', thumbnail: { $: { url: '' } } },
     ]);
-    const fetchMyAPI = async (): Promise<number> => {
-        const feed = await parser.parseURL(CORS_PROXY + 'http://jsfeeds.com/feed');
-        dataSet(feed.items);
-        return feed;
-    };
+    const { feedUrl } = props;
+
     useEffect(() => {
+        const fetchMyAPI = async (): Promise<number> => {
+            const feed = await parser.parseURL(CORS_PROXY + feedUrl);
+            dataSet(feed.items);
+            return feed;
+        };
         fetchMyAPI();
-    }, []);
+    }, [feedUrl]);
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
