@@ -4,7 +4,6 @@ import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/sty
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -12,13 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import NestedList from './NestedList';
 import FeedContainer from './FeedContainer';
+import FeedListMenu from './FeedListMenu';
 
 const drawerWidth = 240;
 
@@ -85,11 +79,12 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const MiniDrawer: React.SFC = (props: { children?: React.ReactNode }) => {
+const MiniDrawer: React.SFC = () => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
+    const [feedUrl, setFeedUrl] = React.useState('');
     function handleDrawerOpen(): void {
         setOpen(true);
     }
@@ -97,7 +92,6 @@ const MiniDrawer: React.SFC = (props: { children?: React.ReactNode }) => {
     function handleDrawerClose(): void {
         setOpen(false);
     }
-
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -144,11 +138,15 @@ const MiniDrawer: React.SFC = (props: { children?: React.ReactNode }) => {
                     </IconButton>
                 </div>
                 <Divider />
-                {props.children}
+                <FeedListMenu
+                    handleClickFeed={(feedUrl: string): void => {
+                        setFeedUrl(feedUrl);
+                    }}
+                />
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <FeedContainer feedUrl="http://jsfeeds.com/feed" />
+                {feedUrl && <FeedContainer feedUrl={feedUrl} />}
             </main>
         </div>
     );
