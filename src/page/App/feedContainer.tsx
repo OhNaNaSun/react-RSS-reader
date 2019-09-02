@@ -1,15 +1,66 @@
 import { CORS_PROXY } from './constants';
-import React, { useState, useEffect, FunctionComponent } from 'react';
+import React, { useState, useEffect, FunctionComponent, Fragment } from 'react';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { red } from '@material-ui/core/colors';
+import Collapse from '@material-ui/core/Collapse';
+import clsx from 'clsx';
+
 const Parser = require('rss-parser');
 const parser = new Parser({
     customFields: {
-        item: ['media:description', 'description'],
+        feed: ['media:thumbnail', 'thumbnail'],
+        item: [['media:description', 'description'], ['media:thumbnail', 'thumbnail']],
+        headers: { 'Access-Control-Allow-Origin': '*' },
     },
 });
+
+const useStyles = makeStyles(theme => ({
+    card: {
+        maxWidth: 600,
+    },
+    media: {
+        height: 0,
+        // paddingTop: '56.25%', // 16:9
+        flex: '1 0 auto',
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    flexContent: {
+        display: 'flex',
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+    avatar: {
+        backgroundColor: red[500],
+    },
+    content: {},
+}));
 const FeedContainer: FunctionComponent = () => {
-    const [data, dataSet] = useState([{ title: '', description: '' }]);
+    const [data, dataSet] = useState([
+        { description: '', title: '', pubDate: '', contentSnippet: '', thumbnail: { $: { url: '' } } },
+    ]);
     const fetchMyAPI = async (): Promise<number> => {
-        const feed = await parser.parseURL(CORS_PROXY + 'https://ponyfoo.com/articles/feed');
+        const feed = await parser.parseURL(CORS_PROXY + 'http://jsfeeds.com/feed');
         dataSet(feed.items);
         return feed;
     };
@@ -17,11 +68,104 @@ const FeedContainer: FunctionComponent = () => {
         fetchMyAPI();
     }, []);
 
+    const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleExpandClick = (): void => {
+        setExpanded(!expanded);
+    };
+    console.log('data', data[0]);
     return (
         <div>
-            {data.slice(0, 1).map(item => (
-                <div key={item.title} dangerouslySetInnerHTML={{ __html: item.description }}></div>
-            ))}
+            {data
+                .slice(0, 1)
+                .map(
+                    (item: {
+                        description: string;
+                        title: string;
+                        pubDate: string;
+                        contentSnippet: string;
+                        thumbnail: { $: { url: string } };
+                    }) => {
+                        return (
+                            <Card className={classes.card} key={item.title}>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar aria-label="recipe" className={classes.avatar}>
+                                            R
+                                        </Avatar>
+                                    }
+                                    action={
+                                        <IconButton aria-label="settings">
+                                            <MoreVertIcon />
+                                        </IconButton>
+                                    }
+                                    title={item.title}
+                                    subheader={item.pubDate}
+                                />
+                                <div className={classes.flexContent}>
+                                    {item.thumbnail.$.url && (
+                                        <CardMedia className={classes.media}>
+                                            <img src={item.thumbnail.$.url} />
+                                        </CardMedia>
+                                    )}
+                                    <CardContent className={classes.content}>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            哈哈哈-{item.contentSnippet}
+                                        </Typography>
+                                    </CardContent>
+                                </div>
+                                <CardActions disableSpacing>
+                                    <IconButton aria-label="add to favorites">
+                                        <FavoriteIcon />
+                                    </IconButton>
+                                    <IconButton aria-label="share">
+                                        <ShareIcon />
+                                    </IconButton>
+                                    <IconButton
+                                        className={clsx(classes.expand, {
+                                            [classes.expandOpen]: expanded,
+                                        })}
+                                        onClick={handleExpandClick}
+                                        aria-expanded={expanded}
+                                        aria-label="show more"
+                                    >
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                </CardActions>
+                                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                    <CardContent>
+                                        <Typography paragraph>Method:</Typography>
+                                        <Typography paragraph>
+                                            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
+                                            aside for 10 minutes.
+                                        </Typography>
+                                        <Typography paragraph>
+                                            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
+                                            medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
+                                            occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
+                                            large plate and set aside, leaving chicken and chorizo in the pan. Add
+                                            pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
+                                            stirring often until thickened and fragrant, about 10 minutes. Add saffron
+                                            broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                                        </Typography>
+                                        <Typography paragraph>
+                                            Add rice and stir very gently to distribute. Top with artichokes and
+                                            peppers, and cook without stirring, until most of the liquid is absorbed, 15
+                                            to 18 minutes. Reduce heat to medium-low, add reserved shrimp and mussels,
+                                            tucking them down into the rice, and cook again without stirring, until
+                                            mussels have opened and rice is just tender, 5 to 7 minutes more. (Discard
+                                            any mussels that don’t open.)
+                                        </Typography>
+                                        <Typography>
+                                            Set aside off of the heat to let rest for 10 minutes, and then serve.
+                                        </Typography>
+                                    </CardContent>
+                                </Collapse>
+                            </Card>
+                        );
+                    },
+                )}
         </div>
     );
 };
