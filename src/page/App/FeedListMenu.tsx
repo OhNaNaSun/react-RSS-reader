@@ -20,7 +20,6 @@ const FeedListMenu: React.SFC<FeedListProps> = props => {
     const fetchMyAPI = async (): Promise<object[]> => {
         const feed = await axios.get('/feeds');
         const originData = feed.data;
-        console.log('fetch from index', originData);
         const dataMap: ObjectLiteral = {};
         originData.forEach((item: { type: string; feed: string }) => {
             const { type, feed } = item;

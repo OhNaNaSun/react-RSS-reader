@@ -86,7 +86,7 @@ const FeedContainer: React.SFC<FeedProps> = props => {
     const handleExpandClick = (): void => {
         setExpanded(!expanded);
     };
-    console.log('data', data[1]);
+    console.log('data', data);
     return (
         <div>
             {data &&
