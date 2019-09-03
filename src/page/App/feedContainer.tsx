@@ -54,7 +54,11 @@ const useStyles = makeStyles(theme => ({
     avatar: {
         backgroundColor: red[500],
     },
-    content: {},
+    content: {
+        width: '100%',
+        height: '60px',
+        overflow: 'hidden',
+    },
     image: {
         width: '100px',
         height: '100px',
@@ -113,14 +117,14 @@ const FeedContainer: React.SFC<FeedProps> = props => {
                                     subheader={item.pubDate}
                                 />
                                 <div className={classes.flexContent}>
-                                    {item.thumbnail.$.url && (
+                                    {item.thumbnail && item.thumbnail.$ && item.thumbnail.$.url && (
                                         <CardMedia className={classes.media}>
                                             <img className={classes.image} src={item.thumbnail.$.url} />
                                         </CardMedia>
                                     )}
                                     <CardContent className={classes.content}>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            哈哈哈-{item.contentSnippet}
+                                        <Typography variant="body2" color="textSecondary" component="div">
+                                            <div dangerouslySetInnerHTML={{ __html: item.contentSnippet }}></div>
                                         </Typography>
                                     </CardContent>
                                 </div>
