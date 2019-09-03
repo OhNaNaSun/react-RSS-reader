@@ -10,13 +10,12 @@ import AddIcon from '@material-ui/icons/Add';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import feedsDataActions from './feedsDataActions';
 import axios from 'axios';
 interface ModalProps {
-    refreshList: Function
+    refreshList: () => void;
 }
-const FormDialog: React.SFC<ModalProps> = (prop) => {
-    const {refreshList} = prop;
+const FormDialog: React.SFC<ModalProps> = props => {
+    const { refreshList } = props;
     const [open, setOpen] = React.useState(false);
     const [feedText, changeFeedText] = React.useState('');
     function handleClickOpen(): void {
@@ -36,7 +35,6 @@ const FormDialog: React.SFC<ModalProps> = (prop) => {
         return {};
     };
     const AddFeed = (): void => {
-        console.log('add feed', feedText);
         postNewFeed();
         handleClose();
         refreshList();
