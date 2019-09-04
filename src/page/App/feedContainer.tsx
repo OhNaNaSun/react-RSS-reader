@@ -1,4 +1,5 @@
 import { CORS_PROXY } from './constants';
+import Drawer from '@material-ui/core/Drawer';
 import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -27,6 +28,9 @@ const parser = new Parser({
 });
 
 const useStyles = makeStyles(theme => ({
+    list: {
+        width: 600,
+    },
     card: {
         maxWidth: 700,
         marginBottom: '20px',
@@ -69,7 +73,7 @@ interface FeedProps {
 }
 const FeedContainer: React.SFC<FeedProps> = props => {
     const [data, dataSet] = useState([
-        { description: '', title: '', pubDate: '', contentSnippet: '', thumbnail: { $: { url: '' } } },
+        { description: '', title: '', pubDate: '', contentSnippet: '', thumbnail: { $: { url: '' } }, content: '' },
     ]);
     const { feedUrl } = props;
 
@@ -88,9 +92,36 @@ const FeedContainer: React.SFC<FeedProps> = props => {
     const handleExpandClick = (): void => {
         setExpanded(!expanded);
     };
+    const [state, setState] = React.useState({
+        right: false,
+    });
+    const [article, setArticle] = React.useState('');
+    const toggleDrawer = (side: string, open?: boolean) => (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    ): void => {
+        if (event.type === 'keydown') {
+            return;
+        }
+
+        setState({ ...state, [side]: open });
+    };
     console.log('data', data);
+    const sideList = (): React.ReactElement => (
+        <div className={classes.list} role="presentation">
+            SSSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO
+            OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioCENARIO OPEN
+            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN
+            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioCENARIO OPEN
+            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN
+            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenario
+        </div>
+    );
     return (
         <div>
+            <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+                {sideList()}
+            </Drawer>
+
             {data &&
                 data.map(
                     (item: {
@@ -98,10 +129,11 @@ const FeedContainer: React.SFC<FeedProps> = props => {
                         title: string;
                         pubDate: string;
                         contentSnippet: string;
+                        content: string;
                         thumbnail: { $: { url: string } };
                     }) => {
                         return (
-                            <Card className={classes.card} key={item.title}>
+                            <Card className={classes.card} key={item.title} onClick={toggleDrawer('right', true)}>
                                 <CardHeader
                                     avatar={
                                         <Avatar aria-label="recipe" className={classes.avatar}>
