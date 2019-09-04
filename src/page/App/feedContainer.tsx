@@ -30,6 +30,7 @@ const parser = new Parser({
 const useStyles = makeStyles(theme => ({
     list: {
         width: 600,
+        padding: '20px',
     },
     card: {
         maxWidth: 700,
@@ -96,30 +97,20 @@ const FeedContainer: React.SFC<FeedProps> = props => {
         right: false,
     });
     const [article, setArticle] = React.useState('');
-    const toggleDrawer = (side: string, open?: boolean) => (
+    const toggleDrawer = (side: string, open: boolean, content: string) => (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     ): void => {
         if (event.type === 'keydown') {
             return;
         }
-
+        setArticle(content);
         setState({ ...state, [side]: open });
     };
     console.log('data', data);
-    const sideList = (): React.ReactElement => (
-        <div className={classes.list} role="presentation">
-            SSSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO
-            OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioCENARIO OPEN
-            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN
-            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioCENARIO OPEN
-            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenarioSCENARIO OPEN
-            ICS-3371_singleSelection_scenarioSCENARIO OPEN ICS-3371_singleSelection_scenario
-        </div>
-    );
     return (
         <div>
-            <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
-                {sideList()}
+            <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false, '')}>
+                <div className={classes.list} role="presentation" dangerouslySetInnerHTML={{ __html: article }}></div>
             </Drawer>
 
             {data &&
@@ -133,7 +124,11 @@ const FeedContainer: React.SFC<FeedProps> = props => {
                         thumbnail: { $: { url: string } };
                     }) => {
                         return (
-                            <Card className={classes.card} key={item.title} onClick={toggleDrawer('right', true)}>
+                            <Card
+                                className={classes.card}
+                                key={item.title}
+                                onClick={toggleDrawer('right', true, item.content)}
+                            >
                                 <CardHeader
                                     avatar={
                                         <Avatar aria-label="recipe" className={classes.avatar}>
