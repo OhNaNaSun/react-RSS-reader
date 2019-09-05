@@ -1,28 +1,17 @@
-import { CORS_PROXY } from './constants';
-import React, { useState, useEffect, FunctionComponent } from 'react';
-const Parser = require('rss-parser');
-const parser = new Parser({
-    customFields: {
-        item: ['media:description', 'description'],
+import React, { AriaAttributes } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles(() => ({
+    list: {
+        width: 600,
+        padding: '20px',
     },
-});
-const ArticleContainer: FunctionComponent = () => {
-    const [data, dataSet] = useState([{ title: '', description: '' }]);
-    const fetchMyAPI = async (): Promise<number> => {
-        const feed = await parser.parseURL(CORS_PROXY + 'https://ponyfoo.com/articles/feed');
-        dataSet(feed.items);
-        return feed;
-    };
-    useEffect(() => {
-        fetchMyAPI();
-    }, []);
-
-    return (
-        <div>
-            {data.slice(0, 1).map(item => (
-                <div key={item.title} dangerouslySetInnerHTML={{ __html: item.description }}></div>
-            ))}
-        </div>
-    );
+}));
+interface ArticleProps {
+    article: string;
+}
+const ArticleContainer: React.SFC<ArticleProps> = props => {
+    const { article } = props;
+    const classes = useStyles();
+    return <div className={classes.list} role="presentation" dangerouslySetInnerHTML={{ __html: article }}></div>;
 };
 export default ArticleContainer;

@@ -1,4 +1,5 @@
 import { CORS_PROXY } from './constants';
+import ArticleContainer from './ArticleContainer';
 import Drawer from '@material-ui/core/Drawer';
 import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
@@ -110,7 +111,7 @@ const FeedContainer: React.SFC<FeedProps> = props => {
     return (
         <div>
             <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false, '')}>
-                <div className={classes.list} role="presentation" dangerouslySetInnerHTML={{ __html: article }}></div>
+                <ArticleContainer article={article} />
             </Drawer>
 
             {data &&
