@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             display: 'flex',
         },
+        feedTitle: {
+            marginRight: '46%',
+        },
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
             transition: theme.transitions.create(['width', 'margin'], {
@@ -133,6 +136,9 @@ const MiniDrawer: React.SFC = () => {
                 open={open}
             >
                 <div className={classes.toolbar}>
+                    <Typography variant="h6" noWrap className={classes.feedTitle}>
+                        FEEDS
+                    </Typography>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
