@@ -1,4 +1,8 @@
 {
+    "types": [
+        "tech",
+        "life"
+    ],
     "feeds": [
         {
             "type": "tech",
