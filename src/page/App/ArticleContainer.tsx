@@ -10,7 +10,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles(() => ({
     card: {
-        width: '800px',
+        width: '1000px',
     },
 }));
 
@@ -28,7 +28,7 @@ const ArticleContainer: React.SFC<ArticleItemProps> = props => {
     const { article } = props;
     const classes = useStyles();
     return (
-        <Card>
+        <Card className={classes.card}>
             <CardHeader
                 avatar={<Avatar aria-label="recipe">R</Avatar>}
                 action={
