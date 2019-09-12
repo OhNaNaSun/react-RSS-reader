@@ -65,7 +65,7 @@ const FormDialog: React.SFC<ModalProps> = props => {
     const fetchFeedTypeList = async (): Promise<object[]> => {
         const feed = await axios.get('/types');
         setFeedTypeList(feed.data);
-        changeSelectedFeedType(feed.data[0]);
+        // changeSelectedFeedType(feed.data[0]);
         return feed.data;
     };
     useEffect(() => {
@@ -120,8 +120,11 @@ const FormDialog: React.SFC<ModalProps> = props => {
                         <InputLabel htmlFor="age-helper">Feed Type:</InputLabel>
                         <Select
                             value={currentFeedType}
-                            onChange={(event): void => {
-                                changeSelectedFeedType(event.target.value);
+                            onChange={(
+                                event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>,
+                                child: React.ReactNode,
+                            ): void => {
+                                changeSelectedFeedType(event.currentTarget.value as string);
                             }}
                             input={<Input name="age" id="age-helper" />}
                         >
@@ -153,7 +156,7 @@ const FormDialog: React.SFC<ModalProps> = props => {
                             // TODO: pipe
                             postNewFeedType();
                             fetchFeedTypeList();
-                            changeSelectedFeedType(event.target.value);
+                            // changeSelectedFeedType(event.target.value);
                         }}
                     >
                         add type
