@@ -1,35 +1,48 @@
 {
-    "types": [
-        "tech",
-        "life"
-    ],
-    "feeds": [
-        {
-            "type": "tech",
-            "feed": "http://jsfeeds.com/feed"
-        },
-        {
-            "type": "tech",
-            "feed": "https://ponyfoo.com/articles/feed"
-        },
-        {
-            "type": "life",
-            "feed": "pony fool"
-        },
-        {
-            "type": "work",
-            "feed": "test feed",
-            "id": "QE9-UYe"
-        },
-        {
-            "type": "work",
-            "feed": "add another new feed",
-            "id": "P-DpqOh"
-        },
-        {
-            "type": "work",
-            "feed": "New one feed!",
-            "id": "-KBGp44"
-        }
-    ]
+  "types": [
+    {
+      "id": "tech"
+    },
+    {
+      "id": "life"
+    },
+    {
+      "id": "esRZG7f"
+    },
+    {
+      "id": "fun"
+    },
+    {
+      "id": "funnn"
+    }
+  ],
+  "feeds": [
+    {
+      "type": "tech",
+      "feed": "http://jsfeeds.com/feed"
+    },
+    {
+      "type": "tech",
+      "feed": "https://ponyfoo.com/articles/feed"
+    },
+    {
+      "type": "life",
+      "feed": "pony fool"
+    },
+    {
+      "type": "work",
+      "feed": "test feed",
+      "id": "QE9-UYe"
+    },
+    {
+      "type": "work",
+      "feed": "add another new feed",
+      "id": "P-DpqOh"
+    },
+    {
+      "type": "work",
+      "feed": "New one feed!",
+      "id": "-KBGp44"
+    }
+  ]
 }

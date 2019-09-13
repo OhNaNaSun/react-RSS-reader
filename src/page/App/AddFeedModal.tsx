@@ -23,6 +23,8 @@ import { FormLabel } from '@material-ui/core';
 import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
+import _ from 'lodash';
+
 interface ModalProps {
     refreshList: () => void;
 }
@@ -75,7 +77,9 @@ const FormDialog: React.SFC<ModalProps> = props => {
     const [feedTypeList, setFeedTypeList] = React.useState([]);
     const fetchFeedTypeList = async (): Promise<object[]> => {
         const feed = await axios.get('/types');
-        setFeedTypeList(feed.data);
+        const feedNameArr = _.map(feed.data, 'id');
+        console.log('feed arr', feedNameArr);
+        setFeedTypeList(feedNameArr as any);
         // changeSelectedFeedType(feed.data[0]);
         return feed.data;
     };
@@ -99,7 +103,7 @@ const FormDialog: React.SFC<ModalProps> = props => {
         return {};
     };
     const postNewFeedType = async (): Promise<object> => {
-        await axios.post('/types', newFeedType).then(res => console.log(res.data));
+        await axios.post('/types', { id: newFeedType }).then(res => console.log(res.data));
         return {};
     };
 
@@ -109,12 +113,6 @@ const FormDialog: React.SFC<ModalProps> = props => {
         refreshList();
     };
 
-    // function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
-    //     setValues(oldValues => ({
-    //         ...oldValues,
-    //         [event.target.name as string]: event.target.value,
-    //     }));
-    // }
     const [spacing, setSpacing] = React.useState<GridSpacing>(2);
     return (
         <div>
@@ -136,7 +134,7 @@ const FormDialog: React.SFC<ModalProps> = props => {
                                     event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>,
                                     child: React.ReactNode,
                                 ): void => {
-                                    changeSelectedFeedType(event.currentTarget.value as string);
+                                    changeSelectedFeedType(event.target.value as string);
                                 }}
                                 input={<Input name="age" id="age-helper" />}
                             >
@@ -165,11 +163,10 @@ const FormDialog: React.SFC<ModalProps> = props => {
                         />
                         <Button
                             className={classes.addBtn}
-                            onClick={(event): void => {
-                                // TODO: pipe
+                            onClick={(): void => {
                                 postNewFeedType();
                                 fetchFeedTypeList();
-                                // changeSelectedFeedType(event.target.value);
+                                changeSelectedFeedType(newFeedType);
                             }}
                         >
                             add type
