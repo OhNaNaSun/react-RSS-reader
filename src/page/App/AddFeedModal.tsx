@@ -22,7 +22,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { FormLabel } from '@material-ui/core';
 import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-
+import Box from '@material-ui/core/Box';
 interface ModalProps {
     refreshList: () => void;
 }
@@ -32,14 +32,25 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexWrap: 'wrap',
         },
+        addBtn: {
+            marginTop: '12px',
+            marginLeft: '2%',
+        },
         formControl: {
             // minWidth: 50,
+            width: '30%',
+            marginRight: '2%',
+            marginTop: '-2px',
             // margin: theme.spacing(1),
             // display: 'flex',
             // flexWrap: 'wrap',
         },
         formField: {
             // flexBasis: 100,
+        },
+        addTypeText: {
+            marginLeft: '2%',
+            marginTop: 0,
         },
         paper: {
             height: 140,
@@ -116,63 +127,68 @@ const FormDialog: React.SFC<ModalProps> = props => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
                 <DialogTitle id="form-dialog-title">Add Feed:</DialogTitle>
                 <DialogContent>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel htmlFor="age-helper">Feed Type:</InputLabel>
-                        <Select
-                            value={currentFeedType}
-                            onChange={(
-                                event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>,
-                                child: React.ReactNode,
-                            ): void => {
-                                changeSelectedFeedType(event.currentTarget.value as string);
+                    <Box maxWidth="sm">
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="age-helper">Feed Type:</InputLabel>
+                            <Select
+                                value={currentFeedType}
+                                onChange={(
+                                    event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>,
+                                    child: React.ReactNode,
+                                ): void => {
+                                    changeSelectedFeedType(event.currentTarget.value as string);
+                                }}
+                                input={<Input name="age" id="age-helper" />}
+                            >
+                                {feedTypeList.map(item => {
+                                    return (
+                                        <MenuItem key={item} value={item}>
+                                            {item}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                            <FormHelperText>Select a feed type here or create a new one.</FormHelperText>
+                        </FormControl>
+                        <FormLabel>OR</FormLabel>
+                        <TextField
+                            className={classes.addTypeText}
+                            autoFocus
+                            margin="dense"
+                            id="feedType"
+                            label="Feed Type"
+                            type="text"
+                            onChange={(event): void => {
+                                const typeValue = event.target.value;
+                                changeNewFeedType(typeValue);
                             }}
-                            input={<Input name="age" id="age-helper" />}
+                        />
+                        <Button
+                            className={classes.addBtn}
+                            onClick={(event): void => {
+                                // TODO: pipe
+                                postNewFeedType();
+                                fetchFeedTypeList();
+                                // changeSelectedFeedType(event.target.value);
+                            }}
                         >
-                            {feedTypeList.map(item => {
-                                return (
-                                    <MenuItem key={item} value={item}>
-                                        {item}
-                                    </MenuItem>
-                                );
-                            })}
-                        </Select>
-                        <FormHelperText>Select a feed type here or create a new one.</FormHelperText>
-                    </FormControl>
-                    <FormLabel>OR</FormLabel>
-                    <TextField
-                        className={classes.formField}
-                        autoFocus
-                        margin="dense"
-                        id="feedType"
-                        label="Feed Type"
-                        type="text"
-                        onChange={(event): void => {
-                            const typeValue = event.target.value;
-                            changeNewFeedType(typeValue);
-                        }}
-                    />
-                    <Button
-                        onClick={(event): void => {
-                            // TODO: pipe
-                            postNewFeedType();
-                            fetchFeedTypeList();
-                            // changeSelectedFeedType(event.target.value);
-                        }}
-                    >
-                        add type
-                    </Button>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Feed"
-                        type="url"
-                        fullWidth
-                        onChange={(event): void => {
-                            changeFeedText(event.target.value);
-                        }}
-                    />
-                    gaga show here:{feedText}
+                            add type
+                        </Button>
+                    </Box>
+                    <Box>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Feed"
+                            type="url"
+                            fullWidth
+                            onChange={(event): void => {
+                                changeFeedText(event.target.value);
+                            }}
+                        />
+                        gaga show here:{feedText}
+                    </Box>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
