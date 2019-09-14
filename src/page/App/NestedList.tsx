@@ -5,13 +5,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import CategoryIcon from '@material-ui/icons/Category';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -27,14 +26,21 @@ const useStyles = makeStyles((theme: Theme) =>
 interface FeedListProps {
     feedType: string;
     feeds: string[];
-
     handleClickFeed: (feedUrl: string) => void;
+    makeListOpen: boolean;
 }
+const getUrlDomain = (url: string): string => {
+    const a = document.createElement('a');
+    a.href = url;
+    const myUrl = a.hostname;
+    return myUrl;
+};
 const NestedList: React.SFC<FeedListProps> = props => {
     const classes = useStyles();
-    const { feedType, feeds, handleClickFeed } = props;
-    const [open, setOpen] = React.useState(false);
-    const [currentFeed, setCurrentFeed] = React.useState('');
+    const { feedType, feeds, handleClickFeed, makeListOpen } = props;
+    const [open, setOpen] = React.useState(makeListOpen);
+    const [currentFeed, setCurrentFeed] = React.useState(makeListOpen ? feeds[0] : '');
+    makeListOpen && handleClickFeed(currentFeed);
     function handleClick(): void {
         setOpen(!open);
     }
@@ -43,7 +49,7 @@ const NestedList: React.SFC<FeedListProps> = props => {
         <List component="nav" aria-labelledby="nested-list-subheader" className={classes.root}>
             <ListItem button onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon />
+                    <CategoryIcon />
                 </ListItemIcon>
                 <ListItemText primary={feedType} />
                 {open ? <ExpandLess /> : <ExpandMore />}
@@ -74,7 +80,7 @@ const NestedList: React.SFC<FeedListProps> = props => {
                                 <ListItemText
                                     primary={
                                         <Typography component="div" variant="body1">
-                                            <Box color={currentColor}>{feed}</Box>
+                                            <Box color={currentColor}>{getUrlDomain(feed)}</Box>
                                         </Typography>
                                     }
                                 />

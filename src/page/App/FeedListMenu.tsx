@@ -35,9 +35,19 @@ const FeedListMenu: React.SFC<FeedListProps> = props => {
     return (
         <Fragment>
             {data &&
-                Object.keys(data).map((key: string) => {
+                Object.keys(data).map((key: string, index: number) => {
+                    console.log(key, index);
                     const item = data[key];
-                    return <NestedList key={key} feedType={key} feeds={item} handleClickFeed={handleClickFeed} />;
+                    console.log(item);
+                    return (
+                        <NestedList
+                            makeListOpen={index === 0}
+                            key={key}
+                            feedType={key}
+                            feeds={item}
+                            handleClickFeed={handleClickFeed}
+                        />
+                    );
                 })}
             <Divider />
             <List>

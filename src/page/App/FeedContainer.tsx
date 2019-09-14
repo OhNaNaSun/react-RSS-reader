@@ -18,7 +18,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { red } from '@material-ui/core/colors';
 import Collapse from '@material-ui/core/Collapse';
 import clsx from 'clsx';
-
 const Parser = require('rss-parser');
 const parser = new Parser({
     customFields: {
@@ -139,9 +138,9 @@ const FeedContainer: React.SFC<FeedProps> = props => {
             </Drawer>
 
             {data &&
-                data.map((item: ArticleItemProps) => {
+                data.map((item: ArticleItemProps, index: number) => {
                     return (
-                        <Card className={classes.card} key={item.title} onClick={toggleDrawer('right', true, item)}>
+                        <Card className={classes.card} key={index} onClick={toggleDrawer('right', true, item)}>
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label="recipe" className={classes.avatar}>

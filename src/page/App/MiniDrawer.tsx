@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const MiniDrawer: React.SFC = () => {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     const [feedUrl, setFeedUrl] = React.useState('');
     function handleDrawerOpen(): void {
