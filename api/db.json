@@ -14,6 +14,9 @@
     },
     {
       "id": "funnn"
+    },
+    {
+      "id": "play"
     }
   ],
   "feeds": [
@@ -43,6 +46,11 @@
       "type": "work",
       "feed": "New one feed!",
       "id": "-KBGp44"
+    },
+    {
+      "type": "play",
+      "feed": "playlink",
+      "id": "3RiRrvI"
     }
   ]
 }

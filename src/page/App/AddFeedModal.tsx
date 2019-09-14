@@ -96,7 +96,7 @@ const FormDialog: React.SFC<ModalProps> = props => {
     const postNewFeed = async (): Promise<object> => {
         await axios
             .post('/feeds', {
-                type: 'work',
+                type: currentFeedType,
                 feed: feedText,
             })
             .then(res => console.log(res.data));
@@ -184,7 +184,7 @@ const FormDialog: React.SFC<ModalProps> = props => {
                                 changeFeedText(event.target.value);
                             }}
                         />
-                        gaga show here:{feedText}
+                        Feed link you add: {feedText}
                     </Box>
                 </DialogContent>
                 <DialogActions>
