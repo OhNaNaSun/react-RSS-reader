@@ -8,6 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import RssFeedIcon from '@material-ui/icons/RssFeed';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -22,7 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
         },
         feedTitle: {
-            marginRight: '46%',
+            marginRight: '31%',
+            marginLeft: '3%',
         },
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
@@ -136,6 +138,7 @@ const MiniDrawer: React.SFC = () => {
                 open={open}
             >
                 <div className={classes.toolbar}>
+                    <RssFeedIcon />
                     <Typography variant="h6" noWrap className={classes.feedTitle}>
                         FEEDS
                     </Typography>

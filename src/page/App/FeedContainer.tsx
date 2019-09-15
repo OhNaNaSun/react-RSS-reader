@@ -4,20 +4,15 @@ import Drawer from '@material-ui/core/Drawer';
 import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { red } from '@material-ui/core/colors';
-import Collapse from '@material-ui/core/Collapse';
-import clsx from 'clsx';
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
+import Link from '@material-ui/core/Link';
 const Parser = require('rss-parser');
 const parser = new Parser({
     customFields: {
@@ -71,6 +66,13 @@ const useStyles = makeStyles(theme => ({
     rightDrawer: {
         width: '800px',
     },
+    chip: {
+        // margin: theme.spacing(1),
+        // marginLeft: 0,
+    },
+    cardHeader: {
+        paddingLeft: 0,
+    },
 }));
 interface FeedProps {
     feedUrl: string;
@@ -79,8 +81,10 @@ interface ArticleItemProps {
     description: string;
     title: string;
     pubDate: string;
+    link: string;
     contentSnippet: string;
     content: string;
+    creator: string;
     thumbnail: { $: { url: string } };
 }
 
@@ -88,7 +92,9 @@ const initArticleItem = {
     description: '',
     title: '',
     pubDate: '',
+    link: '',
     contentSnippet: '',
+    creator: '',
     thumbnail: { $: { url: '' } },
     content: '',
 };
@@ -100,6 +106,7 @@ const FeedContainer: React.SFC<FeedProps> = props => {
     useEffect(() => {
         const fetchMyAPI = async (): Promise<number> => {
             const feed = await parser.parseURL(CORS_PROXY + feedUrl);
+            console.log(feed.items[0]);
             dataSet(feed.items);
             return feed;
         };
@@ -107,11 +114,6 @@ const FeedContainer: React.SFC<FeedProps> = props => {
     }, [feedUrl]);
 
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleExpandClick = (): void => {
-        setExpanded(!expanded);
-    };
     const [state, setState] = React.useState({
         right: false,
     });
@@ -141,16 +143,19 @@ const FeedContainer: React.SFC<FeedProps> = props => {
                     return (
                         <Card className={classes.card} key={index} onClick={toggleDrawer('right', true, item)}>
                             <CardHeader
+                                className={classes.cardHeader}
                                 avatar={
-                                    <Avatar aria-label="recipe" className={classes.avatar}>
-                                        R
-                                    </Avatar>
+                                    <Chip
+                                        avatar={
+                                            <Avatar>
+                                                <FaceIcon />
+                                            </Avatar>
+                                        }
+                                        color="secondary"
+                                        label={item.creator}
+                                        className={classes.chip}
+                                    />
                                 }
-                                /*action={
-                                    <IconButton aria-label="settings">
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                }*/
                                 title={item.title}
                                 subheader={item.pubDate}
                             />
@@ -162,7 +167,17 @@ const FeedContainer: React.SFC<FeedProps> = props => {
                                 )}
                                 <CardContent className={classes.content}>
                                     <Typography variant="body2" color="textSecondary" component="div">
-                                        <div dangerouslySetInnerHTML={{ __html: item.contentSnippet }}></div>
+                                        <div
+                                            dangerouslySetInnerHTML={{
+                                                __html:
+                                                    item.contentSnippet +
+                                                    `<a style="margin-left: 2px" href="` +
+                                                    item.link +
+                                                    `">Read on the Web
+
+</a>`,
+                                            }}
+                                        ></div>
                                     </Typography>
                                 </CardContent>
                             </div>

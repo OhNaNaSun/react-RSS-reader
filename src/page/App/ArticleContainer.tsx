@@ -7,10 +7,13 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
 
 const useStyles = makeStyles(() => ({
     card: {
         width: '1000px',
+        padding: '3%',
     },
 }));
 
@@ -21,6 +24,7 @@ interface ArticleItemProps {
         pubDate: string;
         contentSnippet: string;
         content: string;
+        creator: string;
         thumbnail: { $: { url: string } };
     };
 }
@@ -30,7 +34,17 @@ const ArticleContainer: React.SFC<ArticleItemProps> = props => {
     return (
         <Card className={classes.card}>
             <CardHeader
-                avatar={<Avatar aria-label="recipe">R</Avatar>}
+                avatar={
+                    <Chip
+                        avatar={
+                            <Avatar>
+                                <FaceIcon />
+                            </Avatar>
+                        }
+                        color="secondary"
+                        label={article.creator}
+                    />
+                }
                 action={
                     <IconButton aria-label="settings">
                         <MoreVertIcon />
