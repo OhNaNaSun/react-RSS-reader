@@ -17,5 +17,5 @@
         "jsx": "preserve"
     },
     "include": ["src"],
-    "exclude": ["src/page_old/", "node_modules"]
+    "exclude": ["node_modules"]
 }
