@@ -35,9 +35,7 @@ const AppTopBar: React.SFC = () => {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" noWrap>
-                    RSS Feeder
-                </Typography>
+                <Typography variant="h6" noWrap style={{ marginLeft: '10%' }}></Typography>
             </Toolbar>
         </AppBar>
     );
