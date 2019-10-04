@@ -11,6 +11,9 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import { Store } from '../../Store';
+import { toggleLeftDrawer, setCurrentFeedUrl } from '../../actions';
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -26,7 +29,6 @@ const useStyles = makeStyles((theme: Theme) =>
 interface FeedListProps {
     feedType: string;
     feeds: string[];
-    handleClickFeed: (feedUrl: string) => void;
     makeListOpen: boolean;
 }
 const getUrlDomain = (url: string): string => {
@@ -37,10 +39,11 @@ const getUrlDomain = (url: string): string => {
 };
 const NestedList: React.SFC<FeedListProps> = props => {
     const classes = useStyles();
-    const { feedType, feeds, handleClickFeed, makeListOpen } = props;
+    const { feedType, feeds, makeListOpen } = props;
     const [open, setOpen] = React.useState(makeListOpen);
-    const [currentFeed, setCurrentFeed] = React.useState(makeListOpen ? feeds[0] : '');
-    makeListOpen && handleClickFeed(currentFeed);
+    // const [currentFeed, setCurrentFeed] = React.useState(makeListOpen ? feeds[0] : '');
+    const { state, dispatch } = React.useContext(Store);
+    const { currentFeedUrl } = state;
     function handleClick(): void {
         setOpen(!open);
     }
@@ -57,7 +60,7 @@ const NestedList: React.SFC<FeedListProps> = props => {
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List disablePadding>
                     {feeds.map((feed: string) => {
-                        const currentColor = feed === currentFeed ? 'primary.main' : 'text.primary';
+                        const currentColor = feed === currentFeedUrl ? 'primary.main' : 'text.primary';
                         return (
                             <ListItem
                                 key={feed}
@@ -66,8 +69,8 @@ const NestedList: React.SFC<FeedListProps> = props => {
                                 className={classes.nested}
                                 onClick={(): void => {
                                     console.log('click feedUrl', feed);
-                                    setCurrentFeed(feed);
-                                    handleClickFeed(feed);
+                                    // setCurrentFeed(feed);
+                                    setCurrentFeedUrl(feed, dispatch);
                                 }}
                             >
                                 <ListItemIcon>

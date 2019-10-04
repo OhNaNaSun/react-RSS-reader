@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
+import { Store } from '../../Store';
+// import { toggleRightDrawer } from '../../actions';
 
 const useStyles = makeStyles(() => ({
     card: {
@@ -28,9 +30,11 @@ interface ArticleItemProps {
         thumbnail: { $: { url: string } };
     };
 }
-const ArticleContainer: React.SFC<ArticleItemProps> = props => {
-    const { article } = props;
+const ArticleContainer: React.SFC<ArticleItemProps> = () => {
     const classes = useStyles();
+    const { state } = React.useContext(Store);
+    const { currentArticle: article } = state;
+
     return (
         <Card className={classes.card}>
             <CardHeader
