@@ -2,22 +2,21 @@ import React from 'react';
 import useStyles from './../classes';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
-import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FeedListMenu from './FeedListMenu';
+import AddFeedModal from './AddFeedModal';
 import { Store } from '../../Store';
-import { toggleLeftDrawer, setCurrentFeedUrl } from '../../actions';
-
+import { toggleLeftDrawer, fetchFeedsDataAction } from '../../actions';
 const LeftDrawer: React.SFC = () => {
     const { state, dispatch } = React.useContext(Store);
     const classes = useStyles();
     const { showLeftDrawer: open } = state;
-    const theme = useTheme();
     return (
         <Drawer
             variant="permanent"
@@ -39,8 +38,8 @@ const LeftDrawer: React.SFC = () => {
                     FEEDS
                 </Typography>
                 <IconButton
+                    style={{ marginLeft: '36%' }}
                     onClick={(): void => {
-                        console.log('hello', open);
                         toggleLeftDrawer(!open, dispatch);
                     }}
                 >
@@ -49,6 +48,10 @@ const LeftDrawer: React.SFC = () => {
             </div>
             <Divider />
             <FeedListMenu />
+            <Divider />
+            <List>
+                <AddFeedModal />
+            </List>
         </Drawer>
     );
 };

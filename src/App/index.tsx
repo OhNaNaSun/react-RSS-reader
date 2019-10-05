@@ -2,7 +2,7 @@ import React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import useStyles from './classes';
-import AppTopBar from './AppTopBar';
+import AppTopBar from './TopBar/AppTopBar';
 import LeftDrawer from './LeftDrawer/LeftDrawer';
 import RightDrawer from './RightDrawer/RightDrawer';
 import CssBaseline from '@material-ui/core/CssBaseline';

@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import ListItem from '@material-ui/core/ListItem';
@@ -20,14 +18,11 @@ import axios from 'axios';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import { FormLabel } from '@material-ui/core';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import _ from 'lodash';
+import { Store } from '../../Store';
+import { fetchFeedsDataAction } from '../../actions';
 
-interface ModalProps {
-    refreshList: () => void;
-}
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -66,9 +61,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
-const FormDialog: React.SFC<ModalProps> = props => {
+const FormDialog: React.SFC = () => {
+    const { dispatch } = React.useContext(Store);
     const classes = useStyles();
-    const { refreshList } = props;
     const [open, setOpen] = React.useState(false);
     const [feedText, changeFeedText] = React.useState('');
     const [currentFeedType, changeSelectedFeedType] = React.useState('');
@@ -78,9 +73,7 @@ const FormDialog: React.SFC<ModalProps> = props => {
     const fetchFeedTypeList = async (): Promise<object[]> => {
         const feed = await axios.get('/types');
         const feedNameArr = _.map(feed.data, 'id');
-        console.log('feed arr', feedNameArr);
         setFeedTypeList(feedNameArr as any);
-        // changeSelectedFeedType(feed.data[0]);
         return feed.data;
     };
     useEffect(() => {
@@ -110,10 +103,9 @@ const FormDialog: React.SFC<ModalProps> = props => {
     const AddFeed = (): void => {
         postNewFeed();
         handleClose();
-        refreshList();
+        fetchFeedsDataAction(dispatch);
     };
 
-    const [spacing, setSpacing] = React.useState<GridSpacing>(2);
     return (
         <div>
             <ListItem button onClick={handleClickOpen}>

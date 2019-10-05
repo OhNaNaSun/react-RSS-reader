@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             justifyContent: 'flex-end',
             padding: '0 8px',
+            // marginLeft: '5px',
             ...theme.mixins.toolbar,
         },
         content: {

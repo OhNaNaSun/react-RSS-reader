@@ -28,14 +28,6 @@ const FeedListMenu: React.SFC = () => {
                     const item = feeds[key];
                     return <NestedList makeListOpen={index === 0} key={key} feedType={key} feeds={item} />;
                 })}
-            <Divider />
-            <List>
-                <AddFeedModal
-                    refreshList={(): void => {
-                        // fetchFeedsDataAction(dispatch);
-                    }}
-                />
-            </List>
         </Fragment>
     );
 };
