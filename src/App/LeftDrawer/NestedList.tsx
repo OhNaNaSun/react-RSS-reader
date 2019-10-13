@@ -12,7 +12,7 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { Store } from '../../Store';
-import { toggleLeftDrawer, setCurrentFeedUrl } from '../../actions';
+import { setCurrentFeedUrl } from '../../actions';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -69,7 +69,6 @@ const NestedList: React.SFC<FeedListProps> = props => {
                                 className={classes.nested}
                                 onClick={(): void => {
                                     console.log('click feedUrl', feed);
-                                    // setCurrentFeed(feed);
                                     setCurrentFeedUrl(feed, dispatch);
                                 }}
                             >

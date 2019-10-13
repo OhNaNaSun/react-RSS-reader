@@ -25,7 +25,6 @@ const parser = new Parser({
 
 const fetchCurrentFeedContent: any = async (currentFeedUrl:string, dispatch: any) => {
     const feed = await parser.parseURL(CORS_PROXY + currentFeedUrl);
-    console.log('fetchb???', feed.items[0]);
     return dispatch({
         type: 'FETCH_CURRENT_FEED_CONTENT',
         payload: feed.items,
@@ -51,8 +50,6 @@ const feedsApi = '/feeds';
 
 export const fetchFeedsDataAction = async (dispatch:any) => {
     const data = await axios.get(feedsApi);
-    // const data = await fetch(feedsApi);
-    // const dataJSON = await data.json();
     const originData = await data.data;
     const dataMap: ObjectLiteral = {};
     originData.forEach((item: { type: string; feed: string }) => {
@@ -60,8 +57,6 @@ export const fetchFeedsDataAction = async (dispatch:any) => {
         dataMap[type] = dataMap[type] || [];
         dataMap[type].push(feed);
     });
-    console.log('dataMap', dataMap);
-    // dispatch({})
     return dispatch({
         type: 'FETCH_FEEDS',
         payload: dataMap,

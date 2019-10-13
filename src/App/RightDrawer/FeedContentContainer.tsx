@@ -45,6 +45,7 @@ const FeedContainer: React.SFC = () => {
                         >
                             <CardHeader
                                 className={classes.cardHeader}
+                                style={{ paddingLeft: '0px' }}
                                 avatar={
                                     <Chip
                                         avatar={
@@ -52,7 +53,7 @@ const FeedContainer: React.SFC = () => {
                                                 <FaceIcon />
                                             </Avatar>
                                         }
-                                        color="secondary"
+                                        color="primary"
                                         label={item.creator}
                                         className={classes.chip}
                                     />

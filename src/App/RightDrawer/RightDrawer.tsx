@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import useStyles from './../classes';
 import Drawer from '@material-ui/core/Drawer';
 import ArticleContainer from './ArticleContainer';
@@ -6,16 +6,6 @@ import { Store } from '../../Store';
 import { toggleRightDrawer } from '../../actions';
 import FeedContentContainer from './FeedContentContainer';
 
-// const initArticleItem = {
-//     description: '',
-//     title: '',
-//     pubDate: '',
-//     link: '',
-//     contentSnippet: '',
-//     creator: '',
-//     thumbnail: { $: { url: '' } },
-//     content: '',
-// };
 const RightDrawer: React.SFC = () => {
     const classes = useStyles();
     const { state, dispatch } = React.useContext(Store);

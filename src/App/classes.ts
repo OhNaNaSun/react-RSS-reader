@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme: Theme) =>
             // marginLeft: 0,
         },
         cardHeader: {
-            paddingLeft: 0,
+            paddingLeft: '0px',
         },
     }),
 );

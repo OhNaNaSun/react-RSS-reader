@@ -12,7 +12,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FeedListMenu from './FeedListMenu';
 import AddFeedModal from './AddFeedModal';
 import { Store } from '../../Store';
-import { toggleLeftDrawer, fetchFeedsDataAction } from '../../actions';
+import { toggleLeftDrawer } from '../../actions';
 const LeftDrawer: React.SFC = () => {
     const { state, dispatch } = React.useContext(Store);
     const classes = useStyles();

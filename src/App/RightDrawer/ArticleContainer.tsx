@@ -10,7 +10,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import { Store } from '../../Store';
-// import { toggleRightDrawer } from '../../actions';
 
 const useStyles = makeStyles(() => ({
     card: {
@@ -45,7 +44,7 @@ const ArticleContainer: React.SFC<ArticleItemProps> = () => {
                                 <FaceIcon />
                             </Avatar>
                         }
-                        color="secondary"
+                        color="primary"
                         label={article.creator}
                     />
                 }
