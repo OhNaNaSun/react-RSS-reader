@@ -1,4 +1,4 @@
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             justifyContent: 'flex-end',
             padding: '0 8px',
-            // marginLeft: '5px',
             ...theme.mixins.toolbar,
         },
         content: {

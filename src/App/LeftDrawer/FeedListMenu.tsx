@@ -1,8 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
 import NestedList from './NestedList';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import AddFeedModal from './AddFeedModal';
 import { fetchFeedsDataAction, setCurrentFeedUrl } from '../../actions';
 import { Store } from '../../Store';
 
