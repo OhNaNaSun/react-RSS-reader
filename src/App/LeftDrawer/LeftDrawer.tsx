@@ -13,6 +13,8 @@ import FeedListMenu from './FeedListMenu';
 import AddFeedModal from './AddFeedModal';
 import { Store } from '../../Store';
 import { toggleLeftDrawer } from '../../actions';
+import Grid from '@material-ui/core/Grid';
+
 const LeftDrawer: React.SFC = () => {
     const { state, dispatch } = React.useContext(Store);
     const classes = useStyles();
@@ -47,7 +49,11 @@ const LeftDrawer: React.SFC = () => {
                 </IconButton>
             </div>
             <Divider />
-            <FeedListMenu />
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <FeedListMenu />
+                </Grid>
+            </Grid>
             <Divider />
             <List>
                 <AddFeedModal />

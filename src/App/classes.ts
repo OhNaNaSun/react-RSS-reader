@@ -64,6 +64,8 @@ const useStyles = makeStyles((theme: Theme) =>
         content: {
             flexGrow: 1,
             padding: theme.spacing(3),
+            // position: 'absolute',
+            // width: '100%',
         },
         list: {
             width: 600,
@@ -105,7 +107,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '100px',
         },
         rightDrawer: {
-            width: '800px',
+            // width: '800px',
         },
         chip: {
             // margin: theme.spacing(1),

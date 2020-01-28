@@ -11,7 +11,7 @@ const RightDrawer: React.SFC = () => {
     const { state, dispatch } = React.useContext(Store);
     const { currentArticle, showRightDrawer } = state;
     return (
-        <main className={classes.content}>
+        <main style={{ position: 'absolute', width: '100%' }} className={classes.content}>
             <div className={classes.toolbar} />
             <Drawer
                 className={classes.rightDrawer}
@@ -21,7 +21,7 @@ const RightDrawer: React.SFC = () => {
                     toggleRightDrawer(false, dispatch);
                 }}
             >
-                <ArticleContainer article={currentArticle} />
+                <ArticleContainer toggleRightDrawer={toggleRightDrawer} article={currentArticle} />
             </Drawer>
             <FeedContentContainer />
         </main>

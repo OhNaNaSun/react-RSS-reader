@@ -6,7 +6,7 @@ import AppTopBar from './TopBar/AppTopBar';
 import LeftDrawer from './LeftDrawer/LeftDrawer';
 import RightDrawer from './RightDrawer/RightDrawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import Container from '@material-ui/core/Container';
 const theme = createMuiTheme({
     typography: {
         fontFamily: ['Merriweather', 'sans-serif'].join(','),
@@ -16,12 +16,14 @@ const App: React.SFC = () => {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>
-            <div className={classes.root}>
-                <CssBaseline />
-                <AppTopBar />
-                <LeftDrawer />
-                <RightDrawer />
-            </div>
+            <Container maxWidth="sm">
+                <div className={classes.root}>
+                    <CssBaseline />
+                    <AppTopBar />
+                    <LeftDrawer />
+                    <RightDrawer />
+                </div>
+            </Container>
         </ThemeProvider>
     );
 };

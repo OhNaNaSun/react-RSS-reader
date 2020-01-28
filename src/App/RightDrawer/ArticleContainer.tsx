@@ -13,7 +13,7 @@ import { Store } from '../../Store';
 
 const useStyles = makeStyles(() => ({
     card: {
-        width: '1000px',
+        // width: '1000px',
         padding: '3%',
     },
 }));
@@ -28,12 +28,12 @@ interface ArticleItemProps {
         creator: string;
         thumbnail: { $: { url: string } };
     };
+    toggleRightDrawer: any;
 }
-const ArticleContainer: React.SFC<ArticleItemProps> = () => {
+const ArticleContainer: React.SFC<ArticleItemProps> = ({ toggleRightDrawer }) => {
     const classes = useStyles();
-    const { state } = React.useContext(Store);
+    const { state, dispatch } = React.useContext(Store);
     const { currentArticle: article } = state;
-
     return (
         <Card className={classes.card}>
             <CardHeader
@@ -49,7 +49,12 @@ const ArticleContainer: React.SFC<ArticleItemProps> = () => {
                     />
                 }
                 action={
-                    <IconButton aria-label="settings">
+                    <IconButton
+                        aria-label="settings"
+                        onClick={() => {
+                            toggleRightDrawer(false, dispatch);
+                        }}
+                    >
                         <MoreVertIcon />
                     </IconButton>
                 }

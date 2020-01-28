@@ -18,7 +18,7 @@ const AppTopBar: React.SFC = () => {
             })}
         >
             <Toolbar>
-                <Typography variant="h6" noWrap style={open ? { marginLeft: '20%' } : { marginLeft: '5%' }}>
+                <Typography variant="h6" noWrap style={{ margin: '0 auto' }}>
                     RSS Feed Reader
                 </Typography>
             </Toolbar>
