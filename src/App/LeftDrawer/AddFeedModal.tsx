@@ -19,6 +19,7 @@ import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import { FormLabel } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import _ from 'lodash';
 import { Store } from '../../Store';
 import { fetchFeedsDataAction } from '../../actions';
@@ -117,8 +118,8 @@ const FormDialog: React.SFC = () => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
                 <DialogTitle id="form-dialog-title">Add Feed:</DialogTitle>
                 <DialogContent>
-                    <Box maxWidth="sm">
-                        <FormControl className={classes.formControl}>
+                    <Box>
+                        <FormControl>
                             <InputLabel htmlFor="age-helper">Feed Type:</InputLabel>
                             <Select
                                 value={currentFeedType}
@@ -140,29 +141,41 @@ const FormDialog: React.SFC = () => {
                             </Select>
                             <FormHelperText>Select a feed type here or create a new one.</FormHelperText>
                         </FormControl>
-                        <FormLabel>OR</FormLabel>
-                        <TextField
-                            className={classes.addTypeText}
-                            autoFocus
-                            margin="dense"
-                            id="feedType"
-                            label="Feed Type"
-                            type="text"
-                            onChange={(event): void => {
-                                const typeValue = event.target.value;
-                                changeNewFeedType(typeValue);
-                            }}
-                        />
-                        <Button
-                            className={classes.addBtn}
-                            onClick={(): void => {
-                                postNewFeedType();
-                                fetchFeedTypeList();
-                                changeSelectedFeedType(newFeedType);
-                            }}
-                        >
-                            add type
-                        </Button>
+                    </Box>
+                    <Box mt={4}>
+                        <FormControl>
+                            <FormLabel>OR</FormLabel>
+                        </FormControl>
+                    </Box>
+                    <Box>
+                        <FormControl>
+                            <Grid container>
+                                <Grid item xs={8}>
+                                    <TextField
+                                        autoFocus
+                                        // margin="dense"
+                                        id="feedType"
+                                        label="Input New Feed Type"
+                                        type="text"
+                                        onChange={(event): void => {
+                                            const typeValue = event.target.value;
+                                            changeNewFeedType(typeValue);
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <Button
+                                        onClick={(): void => {
+                                            postNewFeedType();
+                                            fetchFeedTypeList();
+                                            changeSelectedFeedType(newFeedType);
+                                        }}
+                                    >
+                                        Add Type
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </FormControl>
                     </Box>
                     <Box>
                         <TextField
