@@ -1443,8 +1443,8 @@ acorn-walk@^6.0.1:
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-6.2.0.tgz#123cb8f3b84c2171f1f7fb252615b1c78a6b1a8c"
 
 acorn@^5.5.3:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
 
 acorn@^6.0.1, acorn@^6.0.4, acorn@^6.0.5, acorn@^6.0.7:
   version "6.3.0"
@@ -3676,7 +3676,7 @@ eslint-plugin-react-hooks@^1.5.0:
 
 eslint-plugin-react-hooks@^2.1.2:
   version "2.1.2"
-  resolved "http://r.cnpmjs.org/eslint-plugin-react-hooks/download/eslint-plugin-react-hooks-2.1.2.tgz#1358d2acb2c5e02b7e90c37e611ac258a488e3a7"
+  resolved "https://r.cnpmjs.org/eslint-plugin-react-hooks/download/eslint-plugin-react-hooks-2.1.2.tgz#1358d2acb2c5e02b7e90c37e611ac258a488e3a7"
 
 eslint-plugin-react@7.11.0:
   version "7.11.0"
@@ -6817,6 +6817,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+node-bin-setup@^1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.0.6.tgz#4b5c9bb937ece702d7069b36ca78af4684677528"
+
 node-fetch-npm@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/node-fetch-npm/-/node-fetch-npm-2.0.2.tgz#7258c9046182dca345b4208eda918daf33697ff7"
@@ -6911,6 +6915,12 @@ node-releases@^1.1.25, node-releases@^1.1.29:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.29.tgz#86a57c6587a30ecd6726449e5d293466b0a0bb86"
   dependencies:
     semver "^5.3.0"
+
+node@^12.14.1:
+  version "12.16.1"
+  resolved "https://registry.yarnpkg.com/node/-/node-12.16.1.tgz#1f3c353f6bd41f4a93149095f45c37460cd20cb2"
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 "nopt@2 || 3":
   version "3.0.6"
