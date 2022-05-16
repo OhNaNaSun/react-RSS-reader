@@ -3676,7 +3676,7 @@ eslint-plugin-react-hooks@^1.5.0:
 
 eslint-plugin-react-hooks@^2.1.2:
   version "2.1.2"
-  resolved "http://r.cnpmjs.org/eslint-plugin-react-hooks/download/eslint-plugin-react-hooks-2.1.2.tgz#1358d2acb2c5e02b7e90c37e611ac258a488e3a7"
+  resolved "https://r.cnpmjs.org/eslint-plugin-react-hooks/download/eslint-plugin-react-hooks-2.1.2.tgz#1358d2acb2c5e02b7e90c37e611ac258a488e3a7"
 
 eslint-plugin-react@7.11.0:
   version "7.11.0"
@@ -6817,6 +6817,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+node-bin-setup@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.1.0.tgz#9df94c41335a8f41958a639b2736f860582a209c"
+
 node-fetch-npm@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/node-fetch-npm/-/node-fetch-npm-2.0.2.tgz#7258c9046182dca345b4208eda918daf33697ff7"
@@ -6911,6 +6915,12 @@ node-releases@^1.1.25, node-releases@^1.1.29:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.29.tgz#86a57c6587a30ecd6726449e5d293466b0a0bb86"
   dependencies:
     semver "^5.3.0"
+
+node@^12.14.1:
+  version "12.22.11"
+  resolved "https://registry.yarnpkg.com/node/-/node-12.22.11.tgz#142ddefd67e26ace072a450f7a8f4afa879db848"
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 "nopt@2 || 3":
   version "3.0.6"
@@ -10769,8 +10779,8 @@ write@1.0.3:
     mkdirp "^0.5.1"
 
 ws@^5.2.0:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-5.2.2.tgz#dffef14866b8e8dc9133582514d1befaf96e980f"
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-5.2.3.tgz#05541053414921bc29c63bee14b8b0dd50b07b3d"
   dependencies:
     async-limiter "~1.0.0"
 
